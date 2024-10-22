@@ -3,4 +3,14 @@
 	import '../app.css';
 </script>
 
-<h1 class="text-3xl font-bold underline">Hello world!</h1>
+<div class="app">
+	<Header />
+
+	<main>
+		<slot />
+	</main>
+
+	<footer>
+		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
+	</footer>
+</div>
