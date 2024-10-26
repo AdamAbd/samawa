@@ -1,0 +1,115 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh; /* Center vertically within the viewport */
+    padding: 40px; /* Optional padding around the container */
+  }
+  
+  .booking-card {
+    padding: 30px;
+    width: 430px; /* Slightly wider */
+    height: 577px;
+    border-radius: 40px;
+    background-color: #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .booking-card h2 {
+    font-size: 1.6em;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .booking-card p {
+    font-size: 0.95em;
+    color: #000;
+    margin-bottom: 20px;  
+    text-align: left;
+    margin-right: 2px;
+  }
+
+   .image-container {
+    width: 100%;
+    height: 130px;                       /* Adjust the height as needed */
+    border-radius: 15px;
+    background-image: url('$lib/images/wedding_image2.png');
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    }
+
+  .booking-details label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    text-align: left;
+  }
+  
+  .input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: 2px solid #E4E6EB;
+    border-radius: 50px;
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .icon {
+    margin-right: 10px;
+    padding-left: 10px;
+    padding-top: 5px;
+  }
+  
+  .input-group input {
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: #333;
+    font-weight: bold;
+    width: 100%;
+  }
+  
+  .other-package-button {
+    display: block;
+    width: 100%;
+    height: 52px;
+    padding: 12px;
+    border-radius: 50px;
+    background-color: #FF48B6;
+    color: #fff;
+    font-weight: bold;
+    margin-bottom: 10px;
+    border: none;
+  }
+
+  .other-package-button:hover{
+    background-color: #ff79b8;
+  }
+  
+  .view-booking-button {
+    display: block;
+    width: 100%;
+    height: 52px;
+    padding: 12px;
+    border-radius: 50px;
+    border: 1px solid #000;
+    background-color: transparent;
+    font-weight: bold;
+    color: #000;
+  }
+
+  .view-booking-button:hover{
+    color: #FF48B6;
+  }
