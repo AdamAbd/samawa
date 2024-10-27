@@ -6,6 +6,7 @@
     import mandiri from "$lib/images/mandiri.png"
     import andri from "$lib/images/andrianaputri.png"
     import dua from "$lib/images/duaputri.png"
+    import wed from "$lib/images/photowed.png"
 </script>
   <style>
    body {
@@ -291,7 +292,7 @@
       <h2 class="text-xl font-semibold mb-4">
        GOLD
       </h2>
-      <img alt="Wedding image" class="w-full rounded-lg mb-4" height="200" src="\pic\photowed.png" width="300"/>
+      <img alt="Wedding image" class="w-full rounded-lg mb-4" height="200" src={wed} width="300"/>
       <div class="text-pink-500 text-2xl font-bold mb-10">
        Rp 225.500.000
       </div>
