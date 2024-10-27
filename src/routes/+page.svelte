@@ -14,7 +14,7 @@
 <div>
 	<Header />
 
-	<div class="flex flex-col">
+	<div class="flex flex-col mt-[114px]">
 		<section>
 			<div class="flex items-center px-[50px] w-[1000px] h-[480px] bg-red-50 rounded-[30px]">
 				<div class="flex flex-col gap-5 p-5 w-[305px] h-fit bg-white rounded-[20px]">
