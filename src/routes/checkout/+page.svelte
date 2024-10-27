@@ -2,7 +2,10 @@
 <script>
     import "../../app.css"
     import logo from "$lib/images/logo.svg"
-    import bca from "$lib/images/"
+    import bca from "$lib/images/bca.png"
+    import mandiri from "$lib/images/mandiri.png"
+    import andri from "$lib/images/andrianaputri.png"
+    import dua from "$lib/images/duaputri.png"
 </script>
   <style>
    body {
@@ -238,7 +241,7 @@
        </div>
        <div class="flex space-x-4 mb-4">
         <div class="flex items-center">
-         <img alt="BCA logo" class="mr-2" height="40" src="\pic\bca.png" width="40"/>
+         <img alt="BCA logo" class="mr-2" height="40" src={bca} width="40"/>
          <span class="font-semibold">
           Samawa Indonesia
           <i class="fas fa-check-circle text-green-500 ml-1">
@@ -249,7 +252,7 @@
          </span>
         </div>
         <div class="flex items-center">
-         <img alt="Mandiri logo" class="mr-2" height="40" src="\pic\mandiri.png" width="40"/>
+         <img alt="Mandiri logo" class="mr-2" height="40" src={mandiri} width="40"/>
          <span class="font-semibold">
           Samawa Indonesia
           <i class="fas fa-check-circle text-green-500 ml-1">
@@ -314,7 +317,7 @@
          Keren banget Samawa, gue bisa nikah dengan pengalaman bagus dengan harga terjangkau! God.
         </p>
         <div class="flex items-center mt-5">
-         <img alt="Andriana Putri" class="rounded-full mr-2" height="40" src="\pic\andrianaputri.png" width="40"/>
+         <img alt="Andriana Putri" class="rounded-full mr-2" height="40" src="{andri}" width="40"/>
          <span class="font-semibold">
           Andriana Putri
          </span>
@@ -328,7 +331,7 @@
        </h3>
        <div class="border p-2 rounded-lg">
         <div class="flex items-center">
-         <img alt="Dua Putri" class="rounded-full mr-2" height="40" src="\pic\duaputri.png" width="40"/>
+         <img alt="Dua Putri" class="rounded-full mr-2" height="40" src={dua} width="40"/>
          <div>
           <span class="font-semibold">
            Dua Putri
