@@ -4,7 +4,7 @@
 </script>
 
 <header>
-	<div class="fixed top-0 left-0 w-full bg-white">
+	<div class="fixed top-0 left-0 z-[9999] w-full bg-white">
 		<div class="container mx-auto my-[30px] flex flex-row items-center justify-between">
 			<div class="flex flex-row gap-2.5 items-center">
 				<a href="https://kit.svelte.dev">
