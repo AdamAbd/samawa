@@ -1,6 +1,6 @@
 <script>
 	import '../app.css';
-	import 'remixicon/fonts/remixicon.css';
+	// import 'remixicon/fonts/remixicon.css';
 
 	import Header from './Header.svelte';
 	import Crown from '$lib/images/crown.svg';

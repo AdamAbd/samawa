@@ -1,0 +1,322 @@
+/* General Styling */
+
+  * {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .container {
+    width: 98%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .package-header {
+    max-width: 1120px;
+    margin: 0 auto; /* Centers the container horizontally */
+    display: flex; /* Enables flex layout */
+    justify-content: space-between; /* Spaces elements on the left and right */
+    align-items: flex-start; /* Aligns items to the top of the container */
+    padding: 20px;
+  }
+
+
+  .header-left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Aligns text to the right */
+    margin-top: 20px;
+  }
+
+  .package-name {
+    display: block;
+  }
+  
+  .package-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 0px;
+  }
+  
+  .package-location {
+    color: #000000;
+    font-weight: bold;
+    margin-top: 5px;
+    font-size: 1.125;
+  }
+
+  .location-icon {
+    padding-right: 0.3rem;  /* Adds space to the right of the icon */
+    vertical-align: middle; /* Aligns the icon with the text */
+    /* Optionally, adjust margin-top or margin-bottom for vertical alignment */
+  }
+  
+  .review-count {
+    margin-top: 5px;
+    margin-left: 1rem;
+    color: #000000;
+    font-weight: bold;
+  }
+  
+  /* Image Gallery */
+  .gallery {
+    width: 100%;
+    min-width: 1200px;
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    margin-left: 2rem;
+    position: relative;  
+  }
+  
+  .main-image img {
+    width: 830px;
+    /* max-width: 830px; */
+    height: 550px;
+    border-radius: 30px;
+    object-fit: cover;
+  }
+  
+  .thumbnail-images {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .thumbnail-images img {
+    width: 280px;
+    height: 170px;
+    cursor: pointer;
+    border-radius: 24px;
+    border: 2px solid transparent;
+  }
+  
+  .thumbnail-images img.selected {
+    border-color: #FF48B6; /* Highlight selected thumbnail */
+  }
+
+  .tag {
+    position: absolute;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: bold;
+    color: #000;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Specific positioning for each tag */
+  .top-left {
+    top: 1.25rem;
+    left: 1.25rem;
+  }
+  
+  .bottom-left {
+    bottom: 1.625rem;
+    left: 1.25rem;
+  }
+  
+  .bottom-right {
+    bottom: 1.625rem;
+    right: 24.375rem;
+  }
+  
+  /* Styling for text and icons if needed */
+  .tag img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .package-details-header {
+    margin-bottom: 0px;
+    margin-top: 0px;
+  }
+  
+  /* Content Section */
+  .content {
+    display: flex;
+    gap: 1.4rem;
+    margin-bottom: 2rem;
+    margin-left: 2rem;
+    width: 94%;
+  }
+  
+  .package-details h2 {
+    color: #000000; /* Dark gray or black */
+    font-size: 1.5rem; /* Text size for the main header */
+    margin-bottom: 0rem;
+  }
+
+  .package-details h3 {
+    padding-top: 20px;
+    color: #000000; /* Slightly lighter gray */
+    font-size: 1.5rem; /* Text size for sub-headers */
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+  }
+
+  .package-details ul {
+    list-style-type: disc;
+    padding-left: 1rem;
+  }
+
+  .package-details li {
+    color: #000000; /* Darker gray for list items */
+    margin-bottom: 0.5rem; /* Space between each list item */
+    line-height: 1.5; /* Line height for better readability */
+    font-size: 1.5rem;
+  }
+  
+  /* Container styling */
+  .price-container {
+    max-width: 600px;
+    width: 350px;
+    height: 343px;
+    padding: 1.5rem;
+    padding-bottom: 0px;
+    border-radius: 1rem;
+    border: 1px solid #e0e0e0;
+    text-align: left;
+    background-color: transparent;
+    border-radius: 30px;
+  }
+
+  /* Price text styling */
+  .price {
+    font-size: 2.25rem;
+    font-weight: bold;
+    color: #FF48B6;
+    margin-bottom: 1.25rem;
+  }
+
+  /* Divider line */
+  .divider {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    margin: 0.5rem 0;
+    margin: 0;
+    padding-bottom: 20px;
+  }
+
+  /* Organizer title styling */
+  .organizer-title {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #000;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Organizer info container */
+  .organizer-info {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border-radius: 16px;
+    border: 1px solid #e0e0e0;
+    background-color: transparent;
+    margin-bottom: 1.25rem;
+  }
+
+  /* Organizer icon styling */
+  .organizer-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+
+  /* Organizer details */
+  .organizer-details {
+    text-align: left;
+  }
+
+  .organizer-name {
+    font-weight: bold;
+    color: #000;
+  }
+
+  .organizer-packages {
+    font-size: 0.9rem;
+    color: #000;
+  }
+
+  /* Choose Package button styling */
+  .choose-package-btn {
+    width: 100%;
+    height: 52px;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 50px;
+    background-color: #FF48B6;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .choose-package-btn:hover {
+    background-color: #e00092;
+  }
+
+  
+  /* Testimonials Section */
+  .testimonials {
+    background-color: transparent;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+  }
+
+  .testimonial-stars span img{
+    margin-right: 0px;
+  }
+  
+  .testimonials h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .testimonial-cards {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .testimonial-card {
+    width: 555px;
+    height: 164px;
+    background-color: transparent;
+    padding: 1rem;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+    border: 1px solid #e0e0e0;
+  }
+  
+  .testimonial-card p {
+    font-size: 1rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .testimonial-card span {
+    font-weight: bold;
+    font-size: 0.875rem;
+    color: #000;
+  }
+
+  .persona-image {
+    width: 50px;
+    height: 50px;
+    margin-right: 0.75rem;
+    vertical-align: middle;
+  }
+  
