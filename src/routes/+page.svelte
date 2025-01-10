@@ -24,15 +24,14 @@
 		return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 	};
 
-	// To handle errors or loading states:
-	type Post = {
+	type PLace = {
 		name: string;
 		image: string;
 		location: string;
 		price: string;
 	};
 
-	let place: Post[] = $state([]);
+	let place: PLace[] = $state([]);
 	let loading = $state(false);
 
 	async function fetchPlace() {
@@ -77,7 +76,7 @@
 			</div>
 		{/if}
 
-		<Carousel />
+		<Carousel {place} />
 
 		{#if !city}
 			<section
