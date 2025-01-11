@@ -4,7 +4,7 @@
 	import '../app.css';
 	// import 'remixicon/fonts/remixicon.css';
 
-	import Header from './Header.svelte';
+	import Header from '../lib/components/Header.svelte';
 	import Crown from '$lib/images/crown.svg';
 	import Location from '$lib/images/location.svg';
 	import House from '$lib/images/house.svg';
@@ -14,7 +14,7 @@
 	import user from '$lib/images/user.png';
 
 	import WeedingPackage from '$lib/images/package.png';
-	import Footer from './Footer.svelte';
+	import Footer from '../lib/components/Footer.svelte';
 	import Carousel from '$lib/components/Carousel.svelte';
 	import { onMount } from 'svelte';
 

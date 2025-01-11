@@ -25,7 +25,7 @@
 
 	// modal for the bonus details
 	import Modal from '../wedding-package-gold/Modal.svelte';
-	import Header from '../Header.svelte';
+	import Header from '../../lib/components/Header.svelte';
 	let isModalOpen = false;
 
 	function openModal() {

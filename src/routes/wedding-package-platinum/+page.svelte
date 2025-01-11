@@ -25,8 +25,8 @@
 
 	// modal for the bonus details
 	import Modal from './Modal.svelte';
-	import Header from '../Header.svelte';
-	import Footer from '../Footer.svelte';
+	import Header from '../../lib/components/Header.svelte';
+	import Footer from '../../lib/components/Footer.svelte';
 
 	// Track which modal is open by ID, or set to `null` if none are open
 	let currentModal = 0;
