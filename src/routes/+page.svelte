@@ -16,12 +16,52 @@
 	import WeedingPackage from '$lib/images/package.png';
 	import Footer from './Footer.svelte';
 	import Carousel from '$lib/components/Carousel.svelte';
+	import { onMount } from 'svelte';
 
 	let city = $page.url.searchParams.get('city');
 
 	const capitalizeFirstLetter = (val: string) => {
 		return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 	};
+
+	type PLace = {
+		name: string;
+		image: string;
+		location: string;
+		price: string;
+	};
+
+	let place: PLace[] = $state([]);
+	let loading = $state(false);
+
+	async function fetchPlace() {
+		try {
+			const res = await fetch('https://samawa-api.riqgarden.pp.ua/wedding-places', {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization:
+						'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ0ZXN0dXNlciIsImlhdCI6MTczNjQ4MDIyNX0.WNSq8dgzSQ0lszLinN-H1CadUd0XV7wIyU8-G5uBU7A'
+				}
+			});
+			if (res.ok) {
+				place = await res.json();
+			} else {
+				console.error('Failed to fetch place:', res.status);
+			}
+		} catch (error) {
+			console.error('Error fetching place:', error);
+		} finally {
+			loading = false;
+		}
+	}
+
+	let limitedPlace = $derived(place.slice(0, 4));
+
+	onMount(() => {
+		// Fetch place on component mount
+		fetchPlace();
+	});
 </script>
 
 <div>
@@ -36,7 +76,7 @@
 			</div>
 		{/if}
 
-		<Carousel />
+		<Carousel {place} />
 
 		{#if !city}
 			<section
@@ -94,82 +134,37 @@
 			id="packages"
 			class="container mx-auto mb-[70px] flex flex-col items-center gap-[30px]"
 		>
-			<div class="inline-flex items-center justify-between w-full">
-				<h2 class="text-3xl font-bold leading-10">
-					Our Latest & Best <br /> Wedding Packages
-				</h2>
-				<button class="px-5 py-3.5 h-fit border border-black rounded-full">
-					<span class="font-semibold">Explore All</span>
-				</button>
-			</div>
+			<h2 class="self-start text-3xl font-bold leading-10">
+				Our Latest & Best <br /> Wedding Packages
+			</h2>
 
 			<div class="flex flex-row justify-between w-full">
-				<div class="flex flex-col gap-4 w-[260px]">
-					<img class="h-[300px]" src={WeedingPackage} alt="Weeding Package" />
-					<span class="text-xl font-bold leading-[30px]"
-						>Nikah Muda Abadi Pantai Bali Nusa Penida</span
-					>
-					<div class="flex flex-col gap-3.5">
-						<div class="inline-flex gap-1.5 items-center">
-							<img class="h-5 aspect-square" src={Location} alt="Icon Location" />
-							<span class="text-sm font-bold">Luxemborgio City</span>
+				{#if loading}
+					<div>Loading...</div>
+				{:else}
+					{#each limitedPlace as place}
+						<div class="flex flex-col gap-4 w-[260px]">
+							<img class="h-[300px] rounded-2xl" src={place.image} alt="Weeding Package" />
+							<span class="text-xl font-bold leading-[30px]">{place.name}</span>
+							<div class="flex flex-col gap-3.5">
+								<div class="inline-flex gap-1.5 items-center">
+									<img class="h-5 aspect-square" src={Location} alt="Icon Location" />
+									<span class="text-sm font-bold">{place.location}</span>
+								</div>
+								<div class="inline-flex gap-1.5 items-center">
+									<img class="h-5 aspect-square" src={House} alt="Icon Location" />
+									<span class="text-sm font-bold">Tentram Organizer</span>
+								</div>
+							</div>
+							<span class="text-[#FF48B6] font-bold"
+								>{new Intl.NumberFormat('id-ID', {
+									style: 'currency',
+									currency: 'IDR'
+								}).format(parseInt(place.price))}
+							</span>
 						</div>
-						<div class="inline-flex gap-1.5 items-center">
-							<img class="h-5 aspect-square" src={House} alt="Icon Location" />
-							<span class="text-sm font-bold">Tentram Organizer</span>
-						</div>
-					</div>
-					<span class="text-[#FF48B6] font-bold">Rp 198.493.000</span>
-				</div>
-				<div class="flex flex-col gap-4 w-[260px]">
-					<img class="h-[300px]" src={WeedingPackage} alt="Weeding Package" />
-					<span class="text-xl font-bold leading-[30px] h-[60px]">Honeymoon Fast</span>
-					<div class="flex flex-col gap-3.5">
-						<div class="inline-flex gap-1.5 items-center">
-							<img class="h-5 aspect-square" src={Location} alt="Icon Location" />
-							<span class="text-sm font-bold">Luxemborgio City</span>
-						</div>
-						<div class="inline-flex gap-1.5 items-center">
-							<img class="h-5 aspect-square" src={House} alt="Icon Location" />
-							<span class="text-sm font-bold">Tentram Organizer</span>
-						</div>
-					</div>
-					<span class="text-[#FF48B6] font-bold">Rp 198.493.000</span>
-				</div>
-				<div class="flex flex-col gap-4 w-[260px]">
-					<img class="h-[300px]" src={WeedingPackage} alt="Weeding Package" />
-					<span class="text-xl font-bold leading-[30px]"
-						>Nikah Muda Abadi Pantai Bali Nusa Penida</span
-					>
-					<div class="flex flex-col gap-3.5">
-						<div class="inline-flex gap-1.5 items-center">
-							<img class="h-5 aspect-square" src={Location} alt="Icon Location" />
-							<span class="text-sm font-bold">Luxemborgio City</span>
-						</div>
-						<div class="inline-flex gap-1.5 items-center">
-							<img class="h-5 aspect-square" src={House} alt="Icon Location" />
-							<span class="text-sm font-bold">Tentram Organizer</span>
-						</div>
-					</div>
-					<span class="text-[#FF48B6] font-bold">Rp 198.493.000</span>
-				</div>
-				<div class="flex flex-col gap-4 w-[260px]">
-					<img class="h-[300px]" src={WeedingPackage} alt="Weeding Package" />
-					<span class="text-xl font-bold leading-[30px]"
-						>Nikah Muda Abadi Pantai Bali Nusa Penida</span
-					>
-					<div class="flex flex-col gap-3.5">
-						<div class="inline-flex gap-1.5 items-center">
-							<img class="h-5 aspect-square" src={Location} alt="Icon Location" />
-							<span class="text-sm font-bold">Luxemborgio City</span>
-						</div>
-						<div class="inline-flex gap-1.5 items-center">
-							<img class="h-5 aspect-square" src={House} alt="Icon Location" />
-							<span class="text-sm font-bold">Tentram Organizer</span>
-						</div>
-					</div>
-					<span class="text-[#FF48B6] font-bold">Rp 198.493.000</span>
-				</div>
+					{/each}
+				{/if}
 			</div>
 		</section>
 
