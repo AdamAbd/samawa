@@ -16,17 +16,15 @@
 	import andrianaputri from '$lib/images/andrianaputri.png';
 	import Modal from '../Modal.svelte';
 	import Header from '../../../lib/components/Header.svelte';
+	import { onMount } from 'svelte';
+
+	let { data } = $props();
 
 	// modal for the bonus details
 	let isModalOpen = $state(false);
 	let currentImageIndex = $state(0);
-
-	const images = [image1, image2, image3];
-
-	// Auto-switch images every 5 seconds
-	setInterval(() => {
-		currentImageIndex = (currentImageIndex + 1) % images.length;
-	}, 5000);
+	let loading = $state(false);
+	let place = $state(null);
 
 	function openModal() {
 		isModalOpen = true;
@@ -37,6 +35,44 @@
 		isModalOpen = false;
 		document.body.style.overflow = '';
 	}
+
+	async function fetchPlace() {
+		try {
+			loading = true;
+
+			const res = await fetch('https://samawa-api.riqgarden.pp.ua/wedding-places', {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization:
+						'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ0ZXN0dXNlciIsImlhdCI6MTczNjQ4MDIyNX0.WNSq8dgzSQ0lszLinN-H1CadUd0XV7wIyU8-G5uBU7A'
+				}
+			});
+			if (res.ok) {
+				const places = await res.json();
+
+				place = places.find((item) => item.id === parseInt(data.id));
+			} else {
+				console.error('Failed to fetch place:', res.status);
+			}
+		} catch (error) {
+			console.error('Error fetching place:', error);
+		} finally {
+			loading = false;
+		}
+	}
+
+	// const images = [image1, image2, image3];
+	let images = $derived([place?.image, image2, image3]);
+
+	// Auto-switch images every 5 seconds
+	setInterval(() => {
+		currentImageIndex = (currentImageIndex + 1) % images.length;
+	}, 5000);
+
+	onMount(() => {
+		fetchPlace();
+	});
 </script>
 
 <div>
@@ -45,9 +81,10 @@
 	<div class="container mx-auto mt-[114px]">
 		<div class="max-w-7xl mx-auto flex justify-between items-start pb-5">
 			<div class="flex flex-col">
-				<h1 class="text-2xl font-bold mt-2 mb-0">GOLD</h1>
+				<h1 class="text-2xl font-bold mt-2 mb-0">{place?.name}</h1>
 				<p class="text-black font-bold text-lg mt-1">
-					<img class="pr-1 align-middle inline" src={loc_icon} alt="" /> Jakarta, Indonesia
+					<img class="pr-1 align-middle inline" src={loc_icon} alt="" />
+					{place?.location}
 				</p>
 			</div>
 
@@ -219,7 +256,12 @@
 
 			<!-- Price and Booking Section -->
 			<div class="sticky top-32 w-1/3 h-min p-6 border rounded-2xl">
-				<div class="text-3xl font-bold text-pink-500 mb-5">Rp 180.493.000</div>
+				<div class="text-3xl font-bold text-pink-500 mb-5">
+					{new Intl.NumberFormat('id-ID', {
+						style: 'currency',
+						currency: 'IDR'
+					}).format(parseInt(place?.price))}
+				</div>
 				<hr class="border-t border-gray-300 my-2" />
 				<div class="font-bold text-black text-base mb-2">Wedding Organizer</div>
 

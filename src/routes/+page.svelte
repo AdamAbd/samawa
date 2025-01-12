@@ -25,6 +25,7 @@
 	};
 
 	type PLace = {
+		id: number;
 		name: string;
 		image: string;
 		location: string;
@@ -36,6 +37,8 @@
 
 	async function fetchPlace() {
 		try {
+			loading = true;
+
 			const res = await fetch('https://samawa-api.riqgarden.pp.ua/wedding-places', {
 				method: 'GET',
 				headers: {
@@ -143,7 +146,7 @@
 					<div>Loading...</div>
 				{:else}
 					{#each limitedPlace as place}
-						<a href={`wedding-package/${place.name}`} class="flex flex-col gap-4 w-[260px]">
+						<a href={`wedding-package/${place.id}`} class="flex flex-col gap-4 w-[260px]">
 							<img class="h-[300px] rounded-2xl" src={place.image} alt="Weeding Package" />
 							<span class="text-xl font-bold leading-[30px]">{place.name}</span>
 							<div class="flex flex-col gap-3.5">
