@@ -5,14 +5,14 @@
 	import Location from '$lib/images/location.svg';
 	import House from '$lib/images/house.svg';
 
-	export let place;
+	export let places;
 </script>
 
 <section>
 	<div class="marquee">
 		{#each Array(2) as index}
 			<ul class="marquee__content" aria-hidden={index === 0 ? 'false' : 'true'}>
-				{#each place as item}
+				{#each places as item}
 					<div
 						class="flex items-center px-[50px] w-[1000px] h-[480px] rounded-[30px]"
 						style="background-image: url({item.image}); background-size: cover; background-position: center;"

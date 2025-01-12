@@ -1,6 +1,6 @@
 <script>
 	// import '../wedding-package-gold/style.css';
-	import '../../app.css';
+	import '../../../app.css';
 
 	import loc_icon from '$lib/images/location.svg';
 	import star_icon from '$lib/images/star.svg';
@@ -14,19 +14,19 @@
 	import bonus_image from '$lib/images/bonus.png';
 	import kenny from '$lib/images/Kenny.png';
 	import andrianaputri from '$lib/images/andrianaputri.png';
+	import Modal from '../Modal.svelte';
+	import Header from '../../../lib/components/Header.svelte';
 
-	let currentImageIndex = 0;
+	// modal for the bonus details
+	let isModalOpen = $state(false);
+	let currentImageIndex = $state(0);
+
 	const images = [image1, image2, image3];
 
 	// Auto-switch images every 5 seconds
 	setInterval(() => {
 		currentImageIndex = (currentImageIndex + 1) % images.length;
 	}, 5000);
-
-	// modal for the bonus details
-	import Modal from '../wedding-package-gold/Modal.svelte';
-	import Header from '../../lib/components/Header.svelte';
-	let isModalOpen = false;
 
 	function openModal() {
 		isModalOpen = true;
@@ -39,20 +39,10 @@
 	}
 </script>
 
-<!-- <head>
-	<link rel="preconnect" href="https://fonts.googleapis.com" />
-	<link rel="preconnect" href="https://fonts.gstatic.com" />
-	<link
-		href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-		rel="stylesheet"
-	/>
-</head> -->
-
 <div>
 	<Header />
 
 	<div class="container mx-auto mt-[114px]">
-		<!-- Header Section -->
 		<div class="max-w-7xl mx-auto flex justify-between items-start pb-5">
 			<div class="flex flex-col">
 				<h1 class="text-2xl font-bold mt-2 mb-0">GOLD</h1>
@@ -87,7 +77,7 @@
 						class={`cursor-pointer rounded-[24px] border-2 ${
 							index === currentImageIndex ? 'border-[#FF48B6]' : 'border-transparent'
 						}`}
-						on:click={() => (currentImageIndex = index)}
+						onclick={() => (currentImageIndex = index)}
 					>
 						<img class="w-[280px] h-[170px] rounded-[22px]" src={image} alt="Thumbnail" />
 					</button>
@@ -179,7 +169,7 @@
 								</div>
 							</div>
 							<button
-								on:click={openModal}
+								onclick={openModal}
 								class="flex items-center justify-center text-center min-w-[127px] max-h-[41px] bg-transparent border border-black rounded-full text-black font-semibold px-5 py-3 cursor-pointer hover:bg-gray-200"
 							>
 								View Details

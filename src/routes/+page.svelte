@@ -31,7 +31,7 @@
 		price: string;
 	};
 
-	let place: PLace[] = $state([]);
+	let places: PLace[] = $state([]);
 	let loading = $state(false);
 
 	async function fetchPlace() {
@@ -45,7 +45,7 @@
 				}
 			});
 			if (res.ok) {
-				place = await res.json();
+				places = await res.json();
 			} else {
 				console.error('Failed to fetch place:', res.status);
 			}
@@ -56,7 +56,7 @@
 		}
 	}
 
-	let limitedPlace = $derived(place.slice(0, 4));
+	let limitedPlace = $derived(places.slice(0, 4));
 
 	onMount(() => {
 		// Fetch place on component mount
@@ -76,7 +76,7 @@
 			</div>
 		{/if}
 
-		<Carousel {place} />
+		<Carousel {places} />
 
 		{#if !city}
 			<section
@@ -143,7 +143,7 @@
 					<div>Loading...</div>
 				{:else}
 					{#each limitedPlace as place}
-						<a href={`wedding-package-gold`} class="flex flex-col gap-4 w-[260px]">
+						<a href={`wedding-package/${place.name}`} class="flex flex-col gap-4 w-[260px]">
 							<img class="h-[300px] rounded-2xl" src={place.image} alt="Weeding Package" />
 							<span class="text-xl font-bold leading-[30px]">{place.name}</span>
 							<div class="flex flex-col gap-3.5">
