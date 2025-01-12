@@ -1,5 +1,5 @@
 <script>
-	import '../wedding-package-gold/style.css';
+	// import '../wedding-package-gold/style.css';
 	import '../../app.css';
 
 	import loc_icon from '$lib/images/location.svg';
@@ -51,55 +51,70 @@
 <div>
 	<Header />
 
-	<div class="container">
+	<div class="container mx-auto mt-[114px]">
 		<!-- Header Section -->
-		<div class="package-header">
-			<div class="header-left">
-				<h1 class="package-title">GOLD</h1>
-				<p class="package-location">
-					<img class="location-icon" src={loc_icon} alt="" /> Jakarta, Indonesia
+		<div class="max-w-7xl mx-auto flex justify-between items-start pb-5">
+			<div class="flex flex-col">
+				<h1 class="text-2xl font-bold mt-2 mb-0">GOLD</h1>
+				<p class="text-black font-bold text-lg mt-1">
+					<img class="pr-1 align-middle inline" src={loc_icon} alt="" /> Jakarta, Indonesia
 				</p>
 			</div>
 
-			<div class="header-right">
-				<div class="stars">
+			<div class="flex flex-col items-end mt-5">
+				<div class="flex space-x-1">
 					<span><img src={star_icon} alt="" /></span>
 					<span><img src={star_icon} alt="" /></span>
 					<span><img src={star_icon} alt="" /></span>
 					<span><img src={star_icon} alt="" /></span>
 					<span><img src={star_icon} alt="" /></span>
 				</div>
-				<span class="review-count">(18,493)</span>
+				<span class="mt-1 ml-4 text-black font-bold">(18,493)</span>
 			</div>
 		</div>
 
 		<!-- Image Gallery Section -->
-		<div class="gallery">
-			<div class="main-image">
-				<img src={images[currentImageIndex]} alt="Wedding Package Overview" />
-			</div>
-			<div class="thumbnail-images">
+		<div class="w-full flex gap-4 mb-8 relative">
+			<img
+				class="w-[calc(100%-280px)] h-[554px] rounded-[30px] object-cover"
+				src={images[currentImageIndex]}
+				alt="Wedding Package Overview"
+			/>
+			<div class="flex flex-col gap-4">
 				{#each images as image, index}
 					<button
 						type="button"
-						class:selected={index === currentImageIndex}
+						class={`cursor-pointer rounded-[24px] border-2 ${
+							index === currentImageIndex ? 'border-[#FF48B6]' : 'border-transparent'
+						}`}
 						on:click={() => (currentImageIndex = index)}
 					>
-						<img src={image} alt="Thumbnail" />
+						<img class="w-[280px] h-[170px] rounded-[22px]" src={image} alt="Thumbnail" />
 					</button>
 				{/each}
 			</div>
 			<!-- Tags -->
-			<span class="tag top-left"> <img src={popular_icon} alt="img" /> POPULAR</span>
-			<span class="tag bottom-left"> <img src={brochure_icon} alt="" />BROCHURE .PDF</span>
-			<span class="tag bottom-right"> <img src={virtual_icon} alt="" />VIRTUAL 360</span>
+			<span
+				class="absolute top-5 left-5 px-3 py-1.5 rounded-[20px] text-sm font-bold text-black bg-white flex items-center gap-1 shadow-md"
+			>
+				<img src={popular_icon} alt="img" /> POPULAR
+			</span>
+			<span
+				class="absolute bottom-6 left-5 px-3 py-1.5 rounded-[20px] text-sm font-bold text-black bg-white flex items-center gap-1 shadow-md"
+			>
+				<img src={brochure_icon} alt="" />BROCHURE .PDF
+			</span>
+			<span
+				class="absolute bottom-6 right-[calc(280px+20px+16px)] px-3 py-1.5 rounded-[20px] text-sm font-bold text-black bg-white flex items-center gap-1 shadow-md"
+			>
+				<img src={virtual_icon} alt="" />VIRTUAL 360
+			</span>
 		</div>
 
 		<!-- Description and Price Section -->
-		<div class="content">
-			<div class="package-details">
-				<h1 class="package-details-header">It's a Good Package</h1>
-				<h2 class="text-lg font-bold mt-8 mb-4">PAKET WEDDING GOLD</h2>
+		<div class="flex gap-6 mb-8 w-full">
+			<div class="w-2/3">
+				<h2 class="text-lg font-bold mb-4">PAKET WEDDING GOLD</h2>
 
 				<!-- Rias & Busana Section -->
 				<h3 class="text-base font-semibold mt-4">Rias & Busana</h3>
@@ -146,72 +161,93 @@
 					<li>Souvenir Eksklusif untuk tamu undangan</li>
 					<li>Suite pengantin yang mewah</li>
 				</ul>
+
+				<!-- Bonus Section -->
+				<div class="mt-8 rounded-lg">
+					<h3 class="text-lg font-bold mb-3">Bonus Included</h3>
+					<div class="flex flex-col gap-4">
+						<div
+							class="flex items-center justify-between py-4 px-5 gap-1 rounded-3xl mb-4 border border-gray-300"
+						>
+							<div class="flex items-center justify-between">
+								<img src={bonus_image} alt="Bonus" class="max-w-[170px] max-h-[130px]" />
+								<div class="pl-5">
+									<h3 class="font-bold">Post Wedding <br />Photography Album</h3>
+									<p class="text-pink-500 text-base mt-0 mb-5">
+										Rp 0/package <s class="text-black">Rp 680.000.000</s>
+									</p>
+								</div>
+							</div>
+							<button
+								on:click={openModal}
+								class="flex items-center justify-center text-center min-w-[127px] max-h-[41px] bg-transparent border border-black rounded-full text-black font-semibold px-5 py-3 cursor-pointer hover:bg-gray-200"
+							>
+								View Details
+							</button>
+							<Modal isOpen={isModalOpen} onClose={closeModal} />
+						</div>
+					</div>
+				</div>
+
+				<!-- Testimonials Section -->
+				<div class="mt-8">
+					<h3 class="text-lg font-bold mb-3">Wedding Testimonials</h3>
+					<div class="flex gap-5">
+						<div class="w-1/2 bg-transparent p-4 rounded-2xl mb-4 border border-gray-300">
+							<div class="flex items-center gap-1 mb-5">
+								<span><img src={star_icon} alt="" /></span>
+								<span><img src={star_icon} alt="" /></span>
+								<span><img src={star_icon} alt="" /></span>
+								<span><img src={star_icon} alt="" /></span>
+								<span><img src={star_icon} alt="" /></span>
+							</div>
+							<p class="text-base mt-5 mb-5">
+								Semua detail diperhatikan dengan baik dan hasilnya luar biasa. Highly recommended!
+							</p>
+							<span class="font-bold text-sm text-black flex items-center">
+								<img class="w-12 h-12 mr-3 align-middle" src={kenny} alt="" />Kenny
+							</span>
+						</div>
+						<div class="w-1/2 bg-transparent p-4 rounded-2xl mb-4 border border-gray-300">
+							<div class="flex items-center gap-1 mb-5">
+								<span><img src={star_icon} alt="" /></span>
+								<span><img src={star_icon} alt="" /></span>
+								<span><img src={star_icon} alt="" /></span>
+								<span><img src={star_icon} alt="" /></span>
+								<span><img src={star_icon} alt="" /></span>
+							</div>
+							<p class="text-base mt-5 mb-5">
+								Terima kasih, Samawa! Pernikahan kami berjalan lancar dan sempurna.
+							</p>
+							<span class="font-bold text-sm text-black flex items-center">
+								<img class="w-12 h-12 mr-3 align-middle" src={andrianaputri} alt="" />Andriana Putri
+							</span>
+						</div>
+					</div>
+				</div>
 			</div>
 
 			<!-- Price and Booking Section -->
-			<div class="price-container">
-				<div class="price">Rp 180.493.000</div>
-				<hr class="divider" />
-				<hr class="divider" />
-				<div class="organizer-title">Wedding Organizer</div>
+			<div class="sticky top-32 w-1/3 h-min p-6 border rounded-2xl">
+				<div class="text-3xl font-bold text-pink-500 mb-5">Rp 180.493.000</div>
+				<hr class="border-t border-gray-300 my-2" />
+				<div class="font-bold text-black text-base mb-2">Wedding Organizer</div>
 
-				<div class="organizer-info">
-					<img src={dua_putri_icon} alt="Organizer Icon" class="organizer-icon" />
-					<div class="organizer-details">
-						<div class="organizer-name">Dua Putri</div>
-						<div class="organizer-packages">194 Packages</div>
+				<div
+					class="flex items-center gap-3 p-3 rounded-xl border border-gray-300 bg-transparent mb-5"
+				>
+					<img src={dua_putri_icon} alt="Organizer Icon" class="w-12 h-12 rounded-full" />
+					<div class="text-left">
+						<div class="font-bold text-black">Dua Putri</div>
+						<div class="text-sm text-black">194 Packages</div>
 					</div>
 				</div>
 
-				<hr class="divider" />
-				<button class="choose-package-btn">Choose This Package</button>
-			</div>
-		</div>
-
-		<!-- Bonus Section -->
-		<div class="bonus">
-			<h3>Bonus Included</h3>
-			<div class="bonus-cards">
-				<div class="bonus-card">
-					<div class="bonus-description">
-						<img src={bonus_image} alt="Bonus" />
-						<div class="bonus-info">
-							<h3>Post Wedding <br />Photography Album</h3>
-							<p>Rp 0/package <s>Rp 680.000.000</s></p>
-						</div>
-					</div>
-					<button on:click={openModal} class="bonus-details-btn">View Details</button>
-					<Modal isOpen={isModalOpen} onClose={closeModal} />
-				</div>
-			</div>
-		</div>
-
-		<!-- Testimonials Section -->
-		<div class="testimonials">
-			<h3>Wedding Testimonials</h3>
-			<div class="testimonial-cards">
-				<div class="testimonial-card">
-					<div class="testimonial-stars">
-						<span><img src={star_icon} alt="" /></span>
-						<span><img src={star_icon} alt="" /></span>
-						<span><img src={star_icon} alt="" /></span>
-						<span><img src={star_icon} alt="" /></span>
-						<span><img src={star_icon} alt="" /></span>
-					</div>
-					<p>Semua detail diperhatikan dengan baik dan hasilnya luar biasa. Highly recommended!</p>
-					<span><img class="persona-image" src={kenny} alt="" />Kenny</span>
-				</div>
-				<div class="testimonial-card">
-					<div class="testimonial-stars">
-						<span><img src={star_icon} alt="" /></span>
-						<span><img src={star_icon} alt="" /></span>
-						<span><img src={star_icon} alt="" /></span>
-						<span><img src={star_icon} alt="" /></span>
-						<span><img src={star_icon} alt="" /></span>
-					</div>
-					<p>Terima kasih, Samawa! Pernikahan kami berjalan lancar dan sempurna.</p>
-					<span><img class="persona-image" src={andrianaputri} alt="" />Andriana Putri</span>
-				</div>
+				<button
+					class="w-full h-13 py-3 rounded-full bg-pink-500 text-white text-base font-bold hover:bg-pink-700"
+				>
+					Choose This Package
+				</button>
 			</div>
 		</div>
 	</div>

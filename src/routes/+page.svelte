@@ -143,7 +143,7 @@
 					<div>Loading...</div>
 				{:else}
 					{#each limitedPlace as place}
-						<div class="flex flex-col gap-4 w-[260px]">
+						<a href={`wedding-package-gold`} class="flex flex-col gap-4 w-[260px]">
 							<img class="h-[300px] rounded-2xl" src={place.image} alt="Weeding Package" />
 							<span class="text-xl font-bold leading-[30px]">{place.name}</span>
 							<div class="flex flex-col gap-3.5">
@@ -162,7 +162,7 @@
 									currency: 'IDR'
 								}).format(parseInt(place.price))}
 							</span>
-						</div>
+						</a>
 					{/each}
 				{/if}
 			</div>
