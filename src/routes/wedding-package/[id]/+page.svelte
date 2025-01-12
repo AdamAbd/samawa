@@ -1,5 +1,4 @@
 <script>
-	// import '../wedding-package-gold/style.css';
 	import '../../../app.css';
 
 	import loc_icon from '$lib/images/location.svg';
@@ -275,11 +274,12 @@
 					</div>
 				</div>
 
-				<button
+				<a
+					href={`/checkout/${place?.id}`}
 					class="w-full h-13 py-3 rounded-full bg-pink-500 text-white text-base font-bold hover:bg-pink-700"
 				>
 					Choose This Package
-				</button>
+				</a>
 			</div>
 		</div>
 	</div>
