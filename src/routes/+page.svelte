@@ -4,7 +4,7 @@
 	import '../app.css';
 	// import 'remixicon/fonts/remixicon.css';
 
-	import Header from './Header.svelte';
+	import Header from '../lib/components/Header.svelte';
 	import Crown from '$lib/images/crown.svg';
 	import Location from '$lib/images/location.svg';
 	import House from '$lib/images/house.svg';
@@ -14,7 +14,7 @@
 	import user from '$lib/images/user.png';
 
 	import WeedingPackage from '$lib/images/package.png';
-	import Footer from './Footer.svelte';
+	import Footer from '../lib/components/Footer.svelte';
 	import Carousel from '$lib/components/Carousel.svelte';
 	import { onMount } from 'svelte';
 
@@ -25,17 +25,20 @@
 	};
 
 	type PLace = {
+		id: number;
 		name: string;
 		image: string;
 		location: string;
 		price: string;
 	};
 
-	let place: PLace[] = $state([]);
+	let places: PLace[] = $state([]);
 	let loading = $state(false);
 
 	async function fetchPlace() {
 		try {
+			loading = true;
+
 			const res = await fetch('https://samawa-api.riqgarden.pp.ua/wedding-places', {
 				method: 'GET',
 				headers: {
@@ -45,7 +48,7 @@
 				}
 			});
 			if (res.ok) {
-				place = await res.json();
+				places = await res.json();
 			} else {
 				console.error('Failed to fetch place:', res.status);
 			}
@@ -56,7 +59,7 @@
 		}
 	}
 
-	let limitedPlace = $derived(place.slice(0, 4));
+	let limitedPlace = $derived(places.slice(0, 4));
 
 	onMount(() => {
 		// Fetch place on component mount
@@ -76,7 +79,7 @@
 			</div>
 		{/if}
 
-		<Carousel {place} />
+		<Carousel {places} />
 
 		{#if !city}
 			<section
@@ -143,7 +146,7 @@
 					<div>Loading...</div>
 				{:else}
 					{#each limitedPlace as place}
-						<div class="flex flex-col gap-4 w-[260px]">
+						<a href={`wedding-package/${place.id}`} class="flex flex-col gap-4 w-[260px]">
 							<img class="h-[300px] rounded-2xl" src={place.image} alt="Weeding Package" />
 							<span class="text-xl font-bold leading-[30px]">{place.name}</span>
 							<div class="flex flex-col gap-3.5">
@@ -162,7 +165,7 @@
 									currency: 'IDR'
 								}).format(parseInt(place.price))}
 							</span>
-						</div>
+						</a>
 					{/each}
 				{/if}
 			</div>
